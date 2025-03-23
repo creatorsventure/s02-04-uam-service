@@ -91,7 +91,7 @@ public class MenuController implements GenericController<MenuDto> {
 
     @GetMapping(ApplicationConstant.APP_NAVIGATION_METHOD_READ_ID_NAME_MAP)
     @Override
-    public ResponseEntity<Object> readIdNameMapping(@RequestParam String id) {
+    public ResponseEntity<Object> readIdNameMapping() {
         try {
             return StaticUtil.getSuccessResponse(service.readIdAndNameMap(), APIResponseType.OBJECT_ONE);
         } catch (Exception e) {
