@@ -1,4 +1,4 @@
-package com.cv.s04uamservice;
+package com.cv.s0204uamservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
