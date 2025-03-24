@@ -111,4 +111,15 @@ public class MenuController implements GenericController<MenuDto> {
         }
     }
 
+    @GetMapping(UAMConstant.APP_NAVIGATION_API_MENU_TREE)
+    public ResponseEntity<Object> readMenuAsTree() {
+        try {
+            var x = service.readMenuAsTree();
+            return StaticUtil.getSuccessResponse(service.readMenuAsTree(), APIResponseType.OBJECT_ONE);
+        } catch (Exception e) {
+            log.error("MenuController.readMenuAsTree {}", ExceptionUtils.getStackTrace(e));
+            return StaticUtil.getFailureResponse(e);
+        }
+    }
+
 }
