@@ -9,6 +9,7 @@ import com.cv.s0202uamservicepojo.dto.MenuDto;
 import com.cv.s0202uamservicepojo.dto.MenuTreeDto;
 import com.cv.s0202uamservicepojo.entity.Menu;
 import com.cv.s0204uamservice.constant.UAMConstant;
+import com.cv.s0204uamservice.repository.MenuOwnerRepository;
 import com.cv.s0204uamservice.repository.MenuRepository;
 import com.cv.s0204uamservice.service.intrface.MenuService;
 import com.cv.s0204uamservice.service.mapper.MenuMapper;
@@ -20,6 +21,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,10 +38,15 @@ public class MenuServiceImplementation implements MenuService {
     private final MenuMapper mapper;
     private final ExceptionComponent exceptionComponent;
 
+    private final MenuOwnerRepository menuOwnerRepository;
+
     @CacheEvict(keyGenerator = "cacheKeyGenerator", allEntries = true)
     @Override
     public MenuDto create(MenuDto dto) throws Exception {
-        return mapper.toDto(repository.save(mapper.toEntity(dto)));
+        Menu entity = mapper.toEntity(dto);
+        entity.setMenuOwner(menuOwnerRepository.findById(dto.getMenuOwnerId())
+                .orElseThrow(() -> exceptionComponent.expose("app.code.004", true)));
+        return mapper.toDto(repository.save(entity));
     }
 
     @CacheEvict(keyGenerator = "cacheKeyGenerator", allEntries = true)
@@ -47,6 +54,11 @@ public class MenuServiceImplementation implements MenuService {
     public MenuDto update(MenuDto dto) throws Exception {
         return mapper.toDto(repository.findById(dto.getId()).map(entity -> {
             BeanUtils.copyProperties(dto, entity);
+            if (StringUtils.hasText(dto.getMenuOwnerId()) &&
+                    !dto.getMenuOwnerId().equals(entity.getMenuOwner().getId())) {
+                entity.setMenuOwner(menuOwnerRepository.findById(dto.getMenuOwnerId())
+                        .orElseThrow(() -> exceptionComponent.expose("app.code.004", true)));
+            }
             repository.save(entity);
             return entity;
         }).orElseThrow(() -> exceptionComponent.expose("app.code.004", true)));
