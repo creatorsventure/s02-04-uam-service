@@ -6,6 +6,7 @@ import com.cv.s01coreservice.exception.ExceptionComponent;
 import com.cv.s01coreservice.service.function.StaticFunction;
 import com.cv.s01coreservice.util.StaticUtil;
 import com.cv.s0202uamservicepojo.dto.MenuDto;
+import com.cv.s0202uamservicepojo.dto.MenuTreeDto;
 import com.cv.s0202uamservicepojo.entity.Menu;
 import com.cv.s0204uamservice.constant.UAMConstant;
 import com.cv.s0204uamservice.repository.MenuRepository;
@@ -20,6 +21,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -97,4 +100,34 @@ public class MenuServiceImplementation implements MenuService {
     }
 
 
+    @Override
+    public List<MenuTreeDto> readMenuAsTree() throws Exception {
+        List<Menu> parents = repository.findAllByMenuTypeAndStatus(
+                UAMConstant.MENU_TYPE_PARENT, ApplicationConstant.APPLICATION_STATUS_ACTIVE);
+
+        List<Menu> children = repository.findAllByMenuTypeAndStatus(
+                UAMConstant.MENU_TYPE_CHILD, ApplicationConstant.APPLICATION_STATUS_ACTIVE);
+
+        // Group child menus by rootMenuId for faster lookup
+        Map<String, List<Menu>> childrenByRootMenuId = children.stream()
+                .collect(Collectors.groupingBy(Menu::getRootMenuId));
+
+        return parents.stream()
+                .map(parent -> MenuTreeDto.builder()
+                        .key(parent.getId())
+                        .title(parent.getPath())
+                        .expanded(true)
+                        .children(
+                                childrenByRootMenuId.getOrDefault(parent.getId(), Collections.emptyList())
+                                        .stream()
+                                        .map(child -> MenuTreeDto.builder()
+                                                .key(child.getId())
+                                                .title(child.getPath())
+                                                .isLeaf(true)
+                                                .build())
+                                        .collect(Collectors.toList())
+                        )
+                        .build())
+                .collect(Collectors.toList());
+    }
 }

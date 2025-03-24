@@ -28,7 +28,7 @@
     </scm>
     <repositories>
         <repository>
-            <id>github</id>
+            <id>github-s02-02-uam-service-pojo</id>
             <url>
                 https://maven.pkg.github.com/creatorsventure/s02-02-uam-service-pojo
             </url>
@@ -42,7 +42,7 @@
         <java.version>21</java.version>
         <org.mapstruct.version>1.6.2</org.mapstruct.version>
         <org.projectlombok.version>1.18.36</org.projectlombok.version>
-        <uam-service-pojo-version>0.0.6-SNAPSHOT</uam-service-pojo-version>
+        <uam-service-pojo-version>0.0.11-SNAPSHOT</uam-service-pojo-version>
     </properties>
     <dependencies>
         <dependency>
