@@ -6,7 +6,7 @@ core_package_root="com.cv.s01coreservice"
 pojo_package_root="com.cv.s0202uamservicepojo"
 module_package_root="com.cv.s0204uamservice"
 module_package_folder_root="src/main/java/com/cv/s0204uamservice"
-moduleName="role"
+moduleName="permission"
 clear
 echo "================================================================================================================="
 echo "Selected Module Name: $moduleName"
