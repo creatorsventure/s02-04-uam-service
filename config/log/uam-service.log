@@ -2331,3 +2331,105 @@ jakarta.validation.UnexpectedTypeException: HV000030: No validator could be foun
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
 	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
 
+2025-03-24T14:41:10.322+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.cv.s0204uamservice.S0204UAMService   : Starting S0204UAMService using Java 23.0.2 with PID 23521 (/Users/ram/Workshop/Java/simple-services/s02-uam-service/s02-04-uam-service/target/classes started by ram in /Users/ram/Workshop/Java/simple-services/s02-uam-service/s02-04-uam-service)
+2025-03-24T14:41:10.322+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.cv.s0204uamservice.S0204UAMService   : The following 1 profile is active: "test"
+2025-03-24T14:41:10.548+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-24T14:41:10.548+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-24T14:41:10.562+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 4 JPA repository interfaces.
+2025-03-24T14:41:10.636+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-24T14:41:10.637+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-03-24T14:41:10.659+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.cv.s0204uamservice.repository.MenuRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-03-24T14:41:10.659+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.cv.s0204uamservice.repository.PasswordRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-03-24T14:41:10.660+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.cv.s0204uamservice.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-03-24T14:41:10.660+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.cv.s0204uamservice.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-03-24T14:41:10.660+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+2025-03-24T14:41:10.862+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-24T14:41:10.865+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-24T14:41:10.865+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-24T14:41:10.888+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-03-24T14:41:10.888+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 563 ms
+2025-03-24T14:41:10.944+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-24T14:41:10.946+04:00 DEBUG 23521 --- [s02-04-uam-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+2025-03-24T14:41:10.946+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-24T14:41:10.956+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-24T14:41:10.957+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2025-03-24T14:41:10.984+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection com.mysql.cj.jdbc.ConnectionImpl@c19da42
+2025-03-24T14:41:10.984+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2025-03-24T14:41:10.986+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-5)']
+	Database driver: undefined/unknown
+	Database version: 8.0.41
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-24T14:41:11.127+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-24T14:41:11.127+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-24T14:41:11.139+04:00  WARN 23521 --- [s02-04-uam-service] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'menuController' defined in file [/Users/ram/Workshop/Java/simple-services/s02-uam-service/s02-04-uam-service/target/classes/com/cv/s0204uamservice/controller/MenuController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.cv.s0204uamservice.service.intrface.MenuService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-03-24T14:41:11.139+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-24T14:41:11.139+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2025-03-24T14:41:11.146+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2025-03-24T14:41:11.150+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-03-24T14:41:11.154+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-03-24T14:41:11.160+04:00 ERROR 23521 --- [s02-04-uam-service] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.cv.s0204uamservice.controller.MenuController required a bean of type 'com.cv.s0204uamservice.service.intrface.MenuService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cv.s0204uamservice.service.intrface.MenuService' in your configuration.
+
+2025-03-24T14:41:12.591+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.cv.s0204uamservice.S0204UAMService   : Starting S0204UAMService using Java 23.0.2 with PID 23521 (/Users/ram/Workshop/Java/simple-services/s02-uam-service/s02-04-uam-service/target/classes started by ram in /Users/ram/Workshop/Java/simple-services/s02-uam-service/s02-04-uam-service)
+2025-03-24T14:41:12.592+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.cv.s0204uamservice.S0204UAMService   : The following 1 profile is active: "test"
+2025-03-24T14:41:12.709+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-24T14:41:12.709+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-24T14:41:12.716+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 4 JPA repository interfaces.
+2025-03-24T14:41:12.745+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-03-24T14:41:12.745+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-03-24T14:41:12.751+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.cv.s0204uamservice.repository.MenuRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-03-24T14:41:12.751+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.cv.s0204uamservice.repository.PasswordRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-03-24T14:41:12.751+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.cv.s0204uamservice.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-03-24T14:41:12.752+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.cv.s0204uamservice.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-03-24T14:41:12.752+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2025-03-24T14:41:12.840+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-24T14:41:12.840+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-24T14:41:12.840+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-24T14:41:12.851+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-03-24T14:41:12.851+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 258 ms
+2025-03-24T14:41:12.928+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-24T14:41:12.930+04:00 DEBUG 23521 --- [s02-04-uam-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+2025-03-24T14:41:12.930+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-24T14:41:12.938+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-24T14:41:12.938+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2025-03-24T14:41:12.959+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7a9fa28f
+2025-03-24T14:41:12.959+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2025-03-24T14:41:13.013+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-6)']
+	Database driver: undefined/unknown
+	Database version: 8.0.41
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-03-24T14:41:13.196+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-24T14:41:13.197+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-24T14:41:13.243+04:00 DEBUG 23521 --- [s02-04-uam-service] [restartedMain] o.h.stat.internal.StatisticsInitiator    : Statistics initialized [enabled=false]
+2025-03-24T14:41:13.398+04:00  WARN 23521 --- [s02-04-uam-service] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-24T14:41:13.554+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/uamdb'
+2025-03-24T14:41:13.574+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-03-24T14:41:13.585+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-24T14:41:13.588+04:00  INFO 23521 --- [s02-04-uam-service] [restartedMain] com.cv.s0204uamservice.S0204UAMService   : Started S0204UAMService in 1.016 seconds (process running for 6408.306)
+2025-03-24T14:43:55.276+04:00  INFO 23521 --- [s02-04-uam-service] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-24T14:43:55.285+04:00  INFO 23521 --- [s02-04-uam-service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-24T14:43:55.307+04:00  INFO 23521 --- [s02-04-uam-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-24T14:43:55.309+04:00  INFO 23521 --- [s02-04-uam-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2025-03-24T14:43:55.322+04:00  INFO 23521 --- [s02-04-uam-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
