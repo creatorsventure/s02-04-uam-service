@@ -11,6 +11,10 @@ public class UAMConstant {
     public static final String APP_NAVIGATION_API_PASSWORD = "/api/uam-service/password";
     public static final String APP_NAVIGATION_API_PERMISSION = "/api/uam-service/permission";
 
+	public static final String APP_NAVIGATION_API_CHANGE = "/change";
+    public static final String APP_NAVIGATION_API_FORGOT = "/forgot";
+    public static final String APP_NAVIGATION_API_RESET_ADMIN = "/reset-admin";
+    public static final String APP_NAVIGATION_API_RESET = "/reset";
 
     public static final int MENU_TYPE_PARENT = 1;
     public static final int MENU_TYPE_CHILD = 2;

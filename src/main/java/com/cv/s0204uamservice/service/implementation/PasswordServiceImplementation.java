@@ -1,27 +1,18 @@
 package com.cv.s0204uamservice.service.implementation;
 
-import com.cv.s01coreservice.constant.ApplicationConstant;
-import com.cv.s01coreservice.dto.PaginationDto;
 import com.cv.s01coreservice.exception.ExceptionComponent;
-import com.cv.s01coreservice.service.function.StaticFunction;
-import com.cv.s01coreservice.util.StaticUtil;
 import com.cv.s0202uamservicepojo.dto.PasswordDto;
 import com.cv.s0202uamservicepojo.entity.Password;
+import com.cv.s0202uamservicepojo.entity.UserDetail;
 import com.cv.s0204uamservice.constant.UAMConstant;
-import com.cv.s0204uamservice.repository.PasswordRepository;
+import com.cv.s0204uamservice.repository.UserRepository;
 import com.cv.s0204uamservice.service.intrface.PasswordService;
-import com.cv.s0204uamservice.service.mapper.PasswordMapper;
+import com.cv.s0204uamservice.service.intrface.TokenService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -29,72 +20,92 @@ import java.util.stream.Collectors;
 @Transactional(rollbackOn = Exception.class)
 public class PasswordServiceImplementation implements PasswordService {
 
-    private final PasswordRepository repository;
-    private final PasswordMapper mapper;
     private final ExceptionComponent exceptionComponent;
+    private final UserRepository userRepository;
+    private final TokenService tokenService;
 
     @CacheEvict(keyGenerator = "cacheKeyGenerator", allEntries = true)
     @Override
-    public PasswordDto create(PasswordDto dto) throws Exception {
-        return mapper.toDto(repository.save(mapper.toEntity(dto)));
-    }
+    public boolean change(PasswordDto passwordDto) {
 
-    @CacheEvict(keyGenerator = "cacheKeyGenerator", allEntries = true)
-    @Override
-    public PasswordDto update(PasswordDto dto) throws Exception {
-        return mapper.toDto(repository.findById(dto.getId()).map(entity -> {
-            BeanUtils.copyProperties(dto, entity);
-            repository.save(entity);
-            return entity;
-        }).orElseThrow(() -> exceptionComponent.expose("app.code.004", true)));
-    }
+        UserDetail userDetail = userRepository.findByUserId(passwordDto.getUserId())
+                .orElseThrow(() -> exceptionComponent.expose("app.code.003", true));
 
-    @CacheEvict(keyGenerator = "cacheKeyGenerator", allEntries = true)
-    @Override
-    public Boolean updateStatus(String id, boolean status) throws Exception {
-        return repository.findById(id).map(entity -> {
-            entity.setStatus(status);
-            repository.save(entity);
-            return true;
-        }).orElseThrow(() -> exceptionComponent.expose("app.code.004", true));
-    }
+        if (!userDetail.isStatus()) {
+            throw exceptionComponent.expose("app.code.003", true);
+        }
 
-    @Cacheable(keyGenerator = "cacheKeyGenerator")
-    @Override
-    public PasswordDto readOne(String id) throws Exception {
-        return mapper.toDto(repository.findByIdAndStatus(id, ApplicationConstant.APPLICATION_STATUS_ACTIVE, Password.class)
-                .orElseThrow(() -> exceptionComponent.expose("app.code.004", true)));
-    }
+        Password password = userDetail.getPassword();
+        if (password == null || !password.getHashPassword().equals(passwordDto.getOldPassword())) {
+            throw exceptionComponent.expose("app.code.003", true);
+        }
 
-    @CacheEvict(keyGenerator = "cacheKeyGenerator", allEntries = true)
-    @Override
-    public Boolean delete(String id) throws Exception {
-        repository.deleteById(id);
+        password.setEncryptedPassword(passwordDto.getPassword());
+        password.setHashPassword(passwordDto.getPassword());
+
+        userRepository.save(userDetail);
+
         return true;
     }
 
-    @Cacheable(keyGenerator = "cacheKeyGenerator")
     @Override
-    public PaginationDto readAll(PaginationDto dto) throws Exception {
-        Page<Password> page;
-        if (StaticUtil.isSearchRequest(dto.getSearchField(), dto.getSearchValue())) {
-            page = repository.findAll(
-                    repository.searchSpec(dto.getSearchField(), dto.getSearchValue()),
-                    StaticFunction.generatePageRequest.apply(dto));
-        } else {
-            page = repository.findAll(StaticFunction.generatePageRequest.apply(dto));
+    public boolean forgot(PasswordDto passwordDto) {
+
+        UserDetail userDetail = userRepository.findByEmail(passwordDto.getEmail())
+                .orElseThrow(() -> exceptionComponent.expose("app.code.003", true));
+
+        String resetToken = tokenService.generateToken(userDetail.getUserId());
+        String resetLink = "http://frontend-url/reset-password?token=" + resetToken;
+
+        sendPasswordResetEmail(userDetail.getEmail(), resetLink);
+
+        return true;
+    }
+
+    @Override
+    public boolean resetByAdmin(PasswordDto passwordDto) {
+
+        UserDetail userDetail = userRepository.findByUserId(passwordDto.getUserId())
+                .orElseThrow(() -> exceptionComponent.expose("app.code.003", true));
+
+        String resetToken = tokenService.generateToken(userDetail.getUserId());
+        String resetLink = "http://frontend-url/reset-password?token=" + resetToken;
+
+        sendPasswordResetEmail(userDetail.getEmail(), resetLink);
+
+        return true;
+    }
+
+    @CacheEvict(keyGenerator = "cacheKeyGenerator", allEntries = true)
+    @Override
+    public boolean reset(PasswordDto passwordDto) {
+
+        String userId = tokenService.validateToken(passwordDto.getToken());
+        if (userId == null) {
+            throw exceptionComponent.expose("app.code.005", true);
         }
-        dto.setTotal(page.getTotalElements());
-        dto.setResult(page.stream().map(mapper::toDto).collect(Collectors.toList()));
-        return dto;
+
+        UserDetail userDetail = userRepository.findByUserId(userId)
+                .orElseThrow(() -> exceptionComponent.expose("app.code.003", true));
+
+        Password password = userDetail.getPassword();
+        if (password == null) {
+            password = new Password();
+            userDetail.setPassword(password);
+        }
+
+        password.setEncryptedPassword(passwordDto.getPassword());
+        password.setHashPassword(passwordDto.getPassword());
+
+        userRepository.save(userDetail);
+
+        return true;
     }
 
-    @Cacheable(keyGenerator = "cacheKeyGenerator")
-    @Override
-    public Map<String, String> readIdAndNameMap() throws Exception {
-        return repository.findAllByStatus(ApplicationConstant.APPLICATION_STATUS_ACTIVE, Password.class)
-                .stream().collect(Collectors.toMap(Password::getId, Password::getName));
+    //Mocked Functions: Starts
+    public void sendPasswordResetEmail(String email, String message) {
+        System.out.println("Mail sent successfully" + email + ": " + message);
     }
-
+    //Mocked Functions: Ends
 
 }

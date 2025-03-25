@@ -7,8 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends GenericRepository, GenericSpecification<UserDetail>,
         JpaRepository<UserDetail, String>, JpaSpecificationExecutor<UserDetail> {
+
+    Optional<UserDetail> findByUserId(String userId);
+
+    Optional<UserDetail> findByEmail(String email);
 
 }
